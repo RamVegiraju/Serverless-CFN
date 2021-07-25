@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: First CloudFormation template
+Globals:
+  Function:
+    MemorySize: 128
+    Runtime: python3.6
+    Timeout: 5
+Resources:
+  helloworld:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: helloworld.lambda_handler
+      Events:
+        PostAdd:
+          Type: Api
+          Properties:
+            Path: /helloworld
+            Method: get
+      CodeUri: s3://helloworld-sam-mars/26fd3e66b92e3f15383b61729de9ed66

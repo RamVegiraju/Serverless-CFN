@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: First CloudFormation template
+
+
+
+Globals:
+    #Common to all Lambda functions you create
+    Function:
+      MemorySize: 128
+      Runtime: python3.6
+      Timeout: 5
+
+
+Resources:
+
+    ##Lambda and API GW Integrated
+    helloworld:
+        Type: AWS::Serverless::Function
+        Properties:
+          #filename.functionname
+          Handler: helloworld.lambda_handler
+
+          #REST API created
+          Events:
+            PostAdd:
+              Type: Api
+              Properties:
+                Path: /helloworld
+                Method: get
